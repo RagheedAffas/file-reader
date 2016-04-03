@@ -13,35 +13,28 @@ public class FileReaderDemo {
 
         File file = new File("test.txt");
 
-        FileReader fileReader;
+        //FileReader fileReader;
 
-        BufferedReader bufferedReader = null;
-
-        try {
-            fileReader = new FileReader(file);
-
-            bufferedReader = new BufferedReader(fileReader);
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
 
             String line;
-
             //line = bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("File " + file.toString() + " is missing");
         } catch (IOException e) {
             System.out.println("File " + file.toString() + " can't be opened");
         }
-        //finally {
+        /*finally {
             try {
                 bufferedReader.close();
-            } catch (IOException | NullPointerException scsc) {
+            } catch (IOException | NullPointerException e) {
                 //file not opened
             }
             System.out.println("making sure that finally is working");
-
+        */
 
     }
 
